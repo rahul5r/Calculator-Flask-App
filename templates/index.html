@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            margin: 20px 0;
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .input-container {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        #text_box {
+            flex: 1;
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            margin-right: -1px;
+        }
+        .clear-button {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 0 5px 5px 0;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+        }
+        .clear-button:hover {
+            background-color: #e53935;
+        }
+        .clear-button:active {
+            background-color: #d32f2f;
+        }
+        .calc-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calc-table td {
+            padding: 5px;
+        }
+        .butt {
+            width: 100%;
+            padding: 15px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .butt.number {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .butt.number:hover {
+            background-color: #45a049;
+        }
+        .butt.number:active {
+            background-color: #3e8e41;
+        }
+        .butt.operator {
+            background-color: light grey;
+            color: black;
+        }
+        .butt.operator:hover {
+            background-color: grey;
+        }
+        .butt.operator:active {
+            background-color: dark grey;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button[type="submit"]:hover {
+            background-color: #0b7dda;
+        }
+    </style>
+    <script>
+        function handleNumberClick(value) {
+            var textBox = document.getElementById('text_box');
+            if (textBox.value == '{{ result }}') {
+                textBox.value = '';
+            }
+            textBox.value += value;
+        }
+        function handleClearClick() {
+            var textBox = document.getElementById('text_box');
+            textBox.value = '';
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <form action="/" method="POST">
+        <div class="input-container">
+            <input type="text" id="text_box" name="text_box" value="{{ result }}" placeholder="Enter Calculation...">
+            <button class="clear-button" type="button" onclick="handleClearClick()">Clear</button>
+        </div>
+        <table class="calc-table">
+            <tr>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('7')">7</button></td>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('8')">8</button></td>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('9')">9</button></td>
+                <td><button class="butt operator" type="button" onclick="handleNumberClick('/')">/</button></td>
+            </tr>
+            <tr>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('4')">4</button></td>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('5')">5</button></td>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('6')">6</button></td>
+                <td><button class="butt operator" type="button" onclick="handleNumberClick('*')">*</button></td>
+            </tr>
+            <tr>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('1')">1</button></td>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('2')">2</button></td>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('3')">3</button></td>
+                <td><button class="butt operator" type="button" onclick="handleNumberClick('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('0')">0</button></td>
+                <td><button class="butt number" type="button" onclick="handleNumberClick('.')">.</button></td>
+                <td><button class="butt operator" type="button" onclick="handleNumberClick('%')">%</button></td>
+                <td><button class="butt operator" type="button" onclick="handleNumberClick('+')">+</button></td>
+            </tr>
+        </table>
+        <button class="butt" type="submit" name="button" value="calculate">Enter</button>
+    </form>
+</body>
+</html>
